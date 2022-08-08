@@ -1,7 +1,7 @@
 <?php
     session_start();
     if (!$_SESSION['user']) {
-        header('Location: /');
+        header('Location: authorization.php');
     }
 ?>
 
@@ -14,8 +14,14 @@
 </head>
 <body>
     <div>
-        <h2 style="margin: 10px 0;">Hello <?= $_SESSION['user']['full_name'] ?></h2>
-        <a href="/pages/signOutProfile.php" class="logout">Exit</a>
+        <h1 style="margin: 10px 0;">Hello <?= $_SESSION['user']['full_name'] ?></h1>
+        <a href="signOutProfile.php" class="logout">Exit</a>
+        <div clas=link>
+            <a href="/pages/page1.php">page1</a>
+            <a href="/pages/page2.php">page2</a>
+            <a href="/pages/page3.php">page3</a>
+        </div>
     </div>
+    
 </body>
 </html>

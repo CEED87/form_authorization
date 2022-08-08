@@ -1,5 +1,5 @@
 <?php
-     session_start();
+    //  session_start();
     class FrontController 
     {
         private $url;
@@ -37,10 +37,6 @@
             elseif ($this->getURL() === '/authorization' && $this->getHTTPMethod() === 'POST') 
             {
                 Profile::getInstance()->getUser();
-            }
-            else 
-            {
-                NewUserRegistration::getInstance()->getFormRegistr();
             }
         }
     }

@@ -24,7 +24,7 @@
         <span></span>
         <button type="submit">Log in</button>
         <p>
-        Don't have an account? - <a href="/pages/register.php">register</a>!
+        Don't have an account? - <a href="../index.php">register</a>!
         </p>
         <?php
             if ($_SESSION['message']) {
@@ -34,6 +34,7 @@
         ?>
     </form>
     
-<script src="/scripts/main.js"></script>
+    <script src="/scripts/script.js"></script>
+    <script src="/scripts/main.js"></script>
 </body>
 </html>

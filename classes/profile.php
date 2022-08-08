@@ -40,8 +40,8 @@
             $password = $this->checkUser()['password'];
     
             if ($this->checkUser()) {
-                setcookie('password', $password, 0, '/');
-                setcookie('login', $login, 0, '/');
+                setcookie('password', $password, time() + 3600, '/');
+                setcookie('login', $login, time() + 3600, '/');
                 $_SESSION['user'] = ["full_name" => $name];
                 
                 return header('Location: /pages/userAccount.php');             

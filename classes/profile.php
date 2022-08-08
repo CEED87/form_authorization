@@ -46,7 +46,7 @@
                 
                 return header('Location: /pages/userAccount.php');             
             } else {
-                $_SESSION['message'] = 'Не верный логин или пароль';
+                $_SESSION['message'] = 'Wrong login or password';
                 return header('Location: /pages/authorization.php');
             }  
         }

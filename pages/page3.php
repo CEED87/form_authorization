@@ -19,8 +19,8 @@
         <h2 style="margin: 10px 0;"><?= $_SESSION['user']['full_name'] ?></h2>
         <p><a href="signOutProfile.php" class="logout">Exit</a></p> 
         <div clas=link>
+            <a href="page1.php">page1</a>
             <a href="page2.php">page2</a>
-            <a href="page3.php">page3</a>
         </div>
     </div>
 </body>

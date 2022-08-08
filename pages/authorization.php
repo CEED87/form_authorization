@@ -10,7 +10,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Авторизация и регистрация</title>
+    <title>Authorization</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body>
@@ -24,7 +25,7 @@
         <span></span>
         <button type="submit">Log in</button>
         <p>
-        Don't have an account? - <a href="../index.php">register</a>!
+        Don't have an account? - <a href="./index.php">register</a>!
         </p>
         <?php
             if ($_SESSION['message']) {
@@ -34,7 +35,7 @@
         ?>
     </form>
     
-    <script src="/scripts/script.js"></script>
+    <!-- <script src="/scripts/script.js"></script> -->
     <script src="/scripts/main.js"></script>
 </body>
 </html>

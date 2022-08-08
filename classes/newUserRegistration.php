@@ -41,7 +41,7 @@
             if ($this->userData['password'] === $this->userData['password_confirm']) {
                 foreach ($this->userDatabase as $key => $value) {
                     if ($value['login'] === $this->userData['login']) {
-                        $_SESSION['message'] = 'User with this login already exists';
+                        $_SESSION['message'] = 'User with this login already exists!';
                         header('Location: /pages/register.php');
                         exit();
                     }  
@@ -54,7 +54,6 @@
                 return  header('Location: /pages/authorization.php');
         
             } else {
-                $_SESSION['message'] = 'Passwords do not match';
                 return header('Location: /pages/register.php');
             }
         }

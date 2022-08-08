@@ -38,7 +38,6 @@
        <p>
        Do you already have an account? - <a href="/pages/authorization.php">log in</a>!
        </p>
-       <a href="/pages/page1.php">page1</a>
        <?php
            if ($_SESSION['message']) {
                echo '<p class="msg"> ' . $_SESSION['message'] . ' </p>';
@@ -48,7 +47,7 @@
    </form>
 
    
-   <script src="/scripts/script.js"></script>
+   <!-- <script src="/scripts/script.js"></script> -->
    <script src="/scripts/main.js"></script>
 </body>
 </html>

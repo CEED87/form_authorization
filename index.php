@@ -1,12 +1,12 @@
 <?php
 
-    session_start();
-    require_once "autoload/autoload.php";
-    FrontController::getInstance()->route();
+//     session_start();
+//     // require_once "autoload/autoload.php";
+//     // FrontController::getInstance()->route();
 
-    if ($_SESSION['user']) {
-       header('Location: /pages/userAccount.php');
-   }
+//     if ($_SESSION['user']) {
+//        header('Location: /pages/userAccount.php');
+//    }
 ?>
 <!doctype html>
 <html lang="en">
@@ -34,21 +34,16 @@
        <label>Name</label>
        <input type="text" name="full_name" placeholder="Enter your full name">
        <span></span>
-       <button type="submit">Registration</button>
+       <button id="reg" type="button">Registration</button>
        <p>
        Do you already have an account? - <a href="/pages/authorization.php">log in</a>!
        </p>
-       <?php
-           if ($_SESSION['message']) {
-               echo '<p class="msg"> ' . $_SESSION['message'] . ' </p>';
-           }
-           unset($_SESSION['message']);
-       ?>
+       <p id="mess"></p>
    </form>
 
-   
-   <!-- <script src="/scripts/script.js"></script> -->
    <script src="/scripts/main.js"></script>
+   <script src="/scripts/registration.js"></script>
+   
 </body>
 </html>
 

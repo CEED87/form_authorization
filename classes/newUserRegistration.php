@@ -4,58 +4,59 @@
     {
         private $userData;
         private $userDatabase;
-        private $ttt;
-
-
-        public static function getInstance() 
-        { 
-            static $instance;
-            if (!isset($instance)) $instance = new self; 
-            return $instance;
-        }
-
-        function __construct() 
+        private $state;
+        
+        function __construct($userData) 
         {
-            $solt = 'RbdtEWjm';
-            $this->userData = [
-                'full_name' => $_POST['full_name'],
-                'login' => $_POST['login'],
-                'email' => $_POST['email'],
-                'password' => $solt . md5($_POST['password']),
-                'password_confirm' => $solt . md5($_POST['password_confirm'])
-            ];
-            
-        }
-
-        public function getFormRegistr()
-        {
-            $_SESSION['message'] = '';
-            $_SESSION['user'] = '';
-            header('Location: /pages/register.php'); 
+            $this->userData = $userData;
         }
 
         public function addUser() 
         {
+            $json = json_decode($this->userData, true);
+            $solt = 'RbdtEWjm';
+
+            $this->userData = [
+                'full_name' => $json['full_name'],
+                'login' => $json['login'],
+                'email' => $json['email'],
+                'password' => $json['password'],
+                'password_confirm' => $json['password_confirm']
+            ];
+
+            foreach($this->userData as $key => $value) {
+                if ($value == '') {
+                    $this->state = '3';
+                    echo $this->state;
+                    exit();
+                }
+            }
+
             $this->userDatabase = $this->getUsers();
 
             if ($this->userData['password'] === $this->userData['password_confirm']) {
+
+                $this->userData['password'] = $solt . md5($this->userData['password']);
+                $this->userData['password_confirm'] = $solt . md5($this->userData['password_confirm']);
+               
                 foreach ($this->userDatabase as $key => $value) {
                     if ($value['login'] === $this->userData['login']) {
-                        $_SESSION['message'] = 'User with this login already exists!';
-                        header('Location: /pages/register.php');
+                        $this->state = '0';
+                        echo $this->state;
                         exit();
-                    }  
+                    } elseif ($value['email'] === $this->userData['email']) {
+                        $this->state = '2';
+                        echo $this->state;
+                        exit();
+                    } 
                 }
                 $this->userDatabase[] = $this->userData;
                 file_put_contents('users.json', json_encode($this->userDatabase, JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE));
         
-                $_SESSION['message'] = 'Registration completed successfully!';
-
-                return  header('Location: /pages/authorization.php');
-        
-            } else {
-                return header('Location: /pages/register.php');
-            }
+                $this->state = '1';
+                echo $this->state;
+             
+            } 
         }
     }
 

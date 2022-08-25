@@ -9,7 +9,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Profile</title>
+    <title>Personal Area <?= $_SESSION['user']?></title>
     <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body>

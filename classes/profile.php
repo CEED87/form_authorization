@@ -10,21 +10,25 @@
         private $profile;
         private $user;
 
-        public function __construct($data) 
+        function __construct($data) 
         {
             $this->user = $data;
         }
 
-        public function checkUser() 
+        private function checkUser() 
         {
             $data = json_decode($this->user, true);
             $solt = 'RbdtEWjm';
-// 
+
             $this->usersDB = $this->getUsers();
             $this->login = $data['login']; 
             $this->password = $data['password'];
-          
 
+            if ($this->login == '' || $this->password == '') {
+                $this->profile = 1;
+                return $this->profile;
+            }
+          
             foreach ($this->usersDB as $key => $value) {
                 if ($value['login'] === $this->login && $value['password'] === $solt . md5($this->password)) {
                     $this->profile = ['name' => $value['full_name'], 'login' => $value['login'], 'password' => $value['password']];
@@ -32,43 +36,30 @@
                 } else {
                     $this->profile = NULL;
                 }
+                 
             }
             return $this->profile;
         }
 
-
-
-        public function getUser() {
-
-         
-            // $www = json_decode($this->user, true);
-            // print_r(json_decode(file_get_contents($this->user, true)));
-
-            // $fff = $this->checkUser();
-
-
-            // var_dump($this->checkUser());
-            
-
-            
-            if ($this->checkUser()) {
-
+        public function getUser() 
+        {
+            if (gettype($this->checkUser()) == 'integer') {
+                echo $this->checkUser();         
+            } elseif (gettype($this->checkUser()) == 'array') {
+               
                 $name = $this->checkUser()['name'];
                 $login = $this->checkUser()['login'];
                 $password = $this->checkUser()['password'];
-                
+
                 setcookie('password', $password, 0, '/');
                 setcookie('login', $login, 0, '/');
                 $_SESSION['user'] = $name;
-                
-                // return header('Location: ./userAccount.php'); 
-                echo $name;            
-            }  else {
-                // $_SESSION['message'] = 'Не верный логин или пароль';
-                // return header('Location: authorization.php');
+                echo $name;  
+            }
+             else {
                 echo 0;
-            }  
-        }
+            }
+        }   
     }
 
 ?>

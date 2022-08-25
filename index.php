@@ -1,12 +1,10 @@
 <?php
 
-//     session_start();
-//     // require_once "autoload/autoload.php";
-//     // FrontController::getInstance()->route();
+    session_start();
 
-//     if ($_SESSION['user']) {
-//        header('Location: /pages/userAccount.php');
-//    }
+    if ($_SESSION['user']) {
+       header('Location: /pages/userAccount.php');
+   }
 ?>
 <!doctype html>
 <html lang="en">

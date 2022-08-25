@@ -17,11 +17,9 @@ if (formAuth){
                 if (input.value === '') {
                     input.classList.add('input');
                     input.nextElementSibling.innerHTML = "Field must not be empty";
-                    // e.preventDefault();
-                    // input.value === '';
-
                 } else {
                     input.classList.remove('input');
+                    input.nextElementSibling.innerHTML = '';
                     
                 }
             })

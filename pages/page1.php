@@ -1,4 +1,4 @@
- <?php 
+<?php 
     session_start();
     if (!$_SESSION['user']) {
         header('Location: authorization.php');
@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/main.css">
-    <title><?= $_SESSION['user']['full_name'] ?></title>
+    <title><?= $_SESSION['user'] ?></title>
 </head>
 <body>
     <h1>Page №1</h1>

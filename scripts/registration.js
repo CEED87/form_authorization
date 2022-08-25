@@ -19,31 +19,21 @@ $("document").ready(function () {
                 if (+data == 0) {
                     $("#mess").html(messArr[0])
                     $("#mess").removeClass("userY").addClass("userN");
-
-                    console.log(+data)
                 }
                 if (+data == 1) {
                     $('#mess').html(messArr[1])
                     $("#mess").removeClass("userN").addClass("userY");
                     $('form[id="register"]').trigger('reset');
-                    console.log(+data)
                 }
                 if (+data == 2) {
                     $('#mess').html(messArr[2])
                     $("#mess").removeClass("userY").addClass("userN");
-                    console.log(+data)
                 }
                 if (+data == 3) {
                     $('#mess').html(messArr[3])
                     $("#mess").removeClass("userY").addClass("userN");
-                    console.log(+data)
                 }
-
-                // console.log(data)
-
             }
         })
-
     })
-
 })

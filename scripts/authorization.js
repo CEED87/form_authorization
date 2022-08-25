@@ -6,9 +6,9 @@ $("document").ready(function() {
         'User with this email address already exists!'
     ]
 
-    $("#btn").on("click", function(e) {
-        let dataForm = $("#authoriz").serialize()
-        $('form[id="authoriz"]').trigger('reset');
+    $("#aut").on("click", function(e) {
+        let dataForm = $("#authorization").serialize()
+        $('form[id="authorization"]').trigger('reset');
         $.ajax({
             url: '/requestAuthoriz.php',
             method: 'post',
@@ -23,17 +23,7 @@ $("document").ready(function() {
                 } 
                 else
                 window.location.href = 'userAccount.php'
-                // $("body").html(
-                //    ` <div>
-                //         <h1 style="margin: 10px 0;">Hello ${data}</h1>
-                //         <a href="signOutProfile.php" class="logout">Exit</a>
-                //         <div clas=link>
-                //             <a href="/pages/page1.php">page1</a>
-                //             <a href="/pages/page2.php">page2</a>
-                //             <a href="/pages/page3.php">page3</a>
-                //         </div>
-                //     </div>`
-    // )
+                
                 // console.log(data)
                 
                 

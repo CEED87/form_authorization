@@ -16,26 +16,19 @@
 </head>
 <body>
 
-    <form id="authorization" action="/authorization" method="POST">
+<form id="authorization" action="request.php" method="post">
         <label>Login</label>
         <input type="text" name="login" placeholder="Enter your login">
-        <span></span>
         <label>Password</label>
         <input type="password" name="password" placeholder="Enter password">
-        <span></span>
-        <button type="submit">Log in</button>
+        <button id="aut" type="button">Log in</button>
         <p>
         Don't have an account? - <a href="/index.php">register</a>!
         </p>
-        <?php
-            if ($_SESSION['message']) {
-                echo '<p class="msg"> ' . $_SESSION['message'] . ' </p>';
-            } 
-                unset($_SESSION['message']);
-        ?>
+        <p id="mess"></p>
     </form>
-    
-    <!-- <script src="/scripts/script.js"></script> -->
+
     <script src="/scripts/main.js"></script>
+    <script src="/scripts/authorization.js"></script>
 </body>
 </html>

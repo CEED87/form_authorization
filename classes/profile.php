@@ -1,29 +1,32 @@
 <?php
-     session_start();
+
+    session_start();
+    
     class Profile extends ConnectDb 
     {
-        private $usersData;
+        private $usersDB;
         private $login; 
         private $password;
         private $profile;
+        private $user;
 
-        public static function getInstance() 
-        { 
-            static $instance;
-            if (!isset($instance)) $instance = new self; 
-            return $instance;
+        public function __construct($data) 
+        {
+            $this->user = $data;
         }
 
-        private function checkUser() {
-
+        public function checkUser() 
+        {
+            $data = json_decode($this->user, true);
             $solt = 'RbdtEWjm';
+// 
+            $this->usersDB = $this->getUsers();
+            $this->login = $data['login']; 
+            $this->password = $data['password'];
+          
 
-            $this->usersData = $this->getUsers();
-            $this->login = $_POST['login']; 
-            $this->password = $solt . md5($_POST['password']);
-
-            foreach ($this->usersData as $key => $value) {
-                if ($value['login'] === $this->login && $value['password'] === $this->password) {
+            foreach ($this->usersDB as $key => $value) {
+                if ($value['login'] === $this->login && $value['password'] === $solt . md5($this->password)) {
                     $this->profile = ['name' => $value['full_name'], 'login' => $value['login'], 'password' => $value['password']];
                     break;
                 } else {
@@ -33,21 +36,37 @@
             return $this->profile;
         }
 
+
+
         public function getUser() {
 
-            $name = $this->checkUser()['name'];
-            $login = $this->checkUser()['login'];
-            $password = $this->checkUser()['password'];
-    
+         
+            // $www = json_decode($this->user, true);
+            // print_r(json_decode(file_get_contents($this->user, true)));
+
+            // $fff = $this->checkUser();
+
+
+            // var_dump($this->checkUser());
+            
+
+            
             if ($this->checkUser()) {
-                setcookie('password', $password, time() + 3600, '/');
-                setcookie('login', $login, time() + 3600, '/');
-                $_SESSION['user'] = ["full_name" => $name];
+
+                $name = $this->checkUser()['name'];
+                $login = $this->checkUser()['login'];
+                $password = $this->checkUser()['password'];
                 
-                return header('Location: /pages/userAccount.php');             
-            } else {
-                $_SESSION['message'] = 'Wrong login or password';
-                return header('Location: /pages/authorization.php');
+                setcookie('password', $password, 0, '/');
+                setcookie('login', $login, 0, '/');
+                $_SESSION['user'] = $name;
+                
+                // return header('Location: ./userAccount.php'); 
+                echo $name;            
+            }  else {
+                // $_SESSION['message'] = 'Не верный логин или пароль';
+                // return header('Location: authorization.php');
+                echo 0;
             }  
         }
     }

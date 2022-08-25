@@ -16,7 +16,7 @@
 <body>
 <h1>Page №2</h1>
     <div class="profile">
-        <h2 style="margin: 10px 0;"><?= $_SESSION['user']['full_name'] ?></h2>
+        <h2 style="margin: 10px 0;"><?= $_SESSION['user']?></h2>
         <p><a href="signOutProfile.php" class="logout">Exit</a></p> 
         <div clas=link>
             <a href="page1.php">page1</a>

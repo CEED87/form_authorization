@@ -4,19 +4,22 @@
 const formAuth = document.querySelector('#authorization');
 const formReg = document.querySelector('#register');
 const btnReg = document.querySelector('#reg');
+const btnAut = document.querySelector('#aut');
 
 
 
 if (formAuth){
     const checkInput = () => {
-        formAuth.addEventListener('click', (e) => {
+        btnAut.addEventListener('click', (e) => {
             const inputs = formAuth.querySelectorAll('input');
 
             inputs.forEach(input => {
                 if (input.value === '') {
                     input.classList.add('input');
                     input.nextElementSibling.innerHTML = "Field must not be empty";
-                    e.preventDefault();
+                    // e.preventDefault();
+                    // input.value === '';
+
                 } else {
                     input.classList.remove('input');
                     
@@ -33,7 +36,7 @@ if (formAuth){
 // Registration form
 
 const checkLogin = (event, input) => {
-    if (input.value.length < 6) {
+    if (!/^[a-zA-Z][a-zA-Z0-9-_\.]{5,20}$/.test(input.value)) {
         input.classList.add('input');
         input.nextElementSibling.innerHTML = "Must be at least 6 characters";
         input.value = ''
@@ -67,7 +70,7 @@ const checkPassConf = (event, input) => {
 }
 
 const checkEmail = (event, input) => {
-    if (!/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i.test(input.value)) {
+    if (!/.+@.+\..+/i.test(input.value)) {
         input.classList.add('input');
         input.nextElementSibling.innerHTML = "Invalid email entered";
         input.value = ''

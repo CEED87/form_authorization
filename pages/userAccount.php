@@ -14,7 +14,7 @@
 </head>
 <body>
     <div>
-        <h1 style="margin: 10px 0;">Hello <?= $_SESSION['user']['full_name'] ?></h1>
+        <h1 style="margin: 10px 0;">Hello <?= $_SESSION['user']?></h1>
         <a href="signOutProfile.php" class="logout">Exit</a>
         <div clas=link>
             <a href="/pages/page1.php">page1</a>

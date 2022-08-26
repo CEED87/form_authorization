@@ -56,7 +56,6 @@
         
                 $this->state = '1';
                 echo $this->state;
-             
             } 
         }
     }

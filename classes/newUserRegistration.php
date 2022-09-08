@@ -27,11 +27,9 @@
 
             foreach($this->userData as $key => $value) {
                 if ($value == '') {
-                    // $this->state = '3';
-                    $this->userData['ttt'] = [$key => 'empty'];
+                    
+                    $this->userData['empty'] = [$key => 'empty'];
                     echo json_encode($this->userData,JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE);
-                    // $this->state = json_encode($this->userData,JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE)
-                    // echo $this->state;
                     exit();
                 }
             }
@@ -45,20 +43,23 @@
                
                 foreach ($this->userDatabase as $key => $value) {
                     if ($value['login'] === $this->userData['login']) {
-                        $this->state = '0';
-                        echo $this->state;
+
+                        $this->userData['user'] = [$value['login'] => 'exist'];
+                        echo json_encode($this->userData,JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE);
                         exit();
+
                     } elseif ($value['email'] === $this->userData['email']) {
-                        $this->state = '2';
-                        echo $this->state;
+
+                        $this->userData['Email'] = [$value['email'] => 'exist'];
+                        echo json_encode($this->userData,JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE);
                         exit();
                     } 
                 }
                 $this->userDatabase[] = $this->userData;
                 file_put_contents('users.json', json_encode($this->userDatabase, JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE));
-        
-                $this->state = '1';
-                echo $this->state;
+  
+                $this->userData['status'] = 'successfully';
+                echo json_encode($this->userData,JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE);
             } 
         }
     }

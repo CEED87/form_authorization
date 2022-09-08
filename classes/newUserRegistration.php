@@ -27,8 +27,11 @@
 
             foreach($this->userData as $key => $value) {
                 if ($value == '') {
-                    $this->state = '3';
-                    echo $this->state;
+                    // $this->state = '3';
+                    $this->userData['ttt'] = [$key => 'empty'];
+                    echo json_encode($this->userData,JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE);
+                    // $this->state = json_encode($this->userData,JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE)
+                    // echo $this->state;
                     exit();
                 }
             }

@@ -10,6 +10,8 @@
         private $profile;
         private $user;
 
+        private $data;
+
         function __construct($data) 
         {
             $this->user = $data;
@@ -17,12 +19,12 @@
 
         private function checkUser() 
         {
-            $data = json_decode($this->user, true);
+            $this->data = json_decode($this->user, true);
             $solt = 'RbdtEWjm';
 
             $this->usersDB = $this->getUsers();
-            $this->login = $data['login']; 
-            $this->password = $data['password'];
+            $this->login = $this->data['login']; 
+            $this->password = $this->data['password'];
 
             if ($this->login == '' || $this->password == '') {
                 $this->profile = 1;
@@ -44,7 +46,8 @@
         public function getUser() 
         {
             if (gettype($this->checkUser()) == 'integer') {
-                echo $this->checkUser();         
+                echo json_encode($this->data,JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE);
+
             } elseif (gettype($this->checkUser()) == 'array') {
                
                 $name = $this->checkUser()['name'];
@@ -54,10 +57,12 @@
                 setcookie('password', $password, 0, '/');
                 setcookie('login', $login, 0, '/');
                 $_SESSION['user'] = $name;
-                echo $name;  
+        
+                echo json_encode($this->checkUser(),JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE);
             }
              else {
-                echo 0;
+                $this->data = ['user' => 'not found'];
+                echo json_encode($this->data);
             }
         }   
     }

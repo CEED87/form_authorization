@@ -6,20 +6,20 @@ $("document").ready(function() {
         $.ajax({
             url: '/requestAuthoriz.php',
             method: 'post',
-            dataType: 'html',
+            dataType: 'json',
             data: dataForm,
             success: function(data) {
 
-                if (+data === 0) {
+                if (data.user) {
                     $("#mess").removeClass("userY").addClass("userN")
                     $("#mess").html('No user found with this username or password!')
                 } 
-                else if (+data === 1) {
+                else if (data.login == '' || data.password == '') {
                     $("#mess").removeClass("userY").addClass("userN")
                     $("#mess").html('All fields must be filled!')
                 }
                 else
-                window.location.href = 'userAccount.php'    
+                window.location.href = 'userAccount.php'   
             }
         })
     })

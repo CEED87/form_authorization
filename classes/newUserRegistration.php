@@ -56,7 +56,7 @@
                     } 
                 }
                 $this->userDatabase[] = $this->userData;
-                file_put_contents('users.json', json_encode($this->userDatabase, JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE));
+                file_put_contents(__DIR__ . '/users.json', json_encode($this->userDatabase, JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE));
   
                 $this->userData['status'] = 'successfully';
                 echo json_encode($this->userData,JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE);

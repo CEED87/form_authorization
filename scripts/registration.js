@@ -33,6 +33,8 @@ $("document").ready(function () {
                     $('#mess').html(messArr[3])
                     $("#mess").removeClass("userY").addClass("userN");
                 }
+
+                // console.log(data)
             }
         })
     })

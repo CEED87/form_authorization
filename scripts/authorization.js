@@ -13,6 +13,7 @@ $("document").ready(function() {
                 if (data.user) {
                     $("#mess").removeClass("userY").addClass("userN")
                     $("#mess").html('No user found with this username or password!')
+                    $('form[id="authorization"]').trigger('reset');
                 } 
                 else if (data.login == '' || data.password == '') {
                     $("#mess").removeClass("userY").addClass("userN")

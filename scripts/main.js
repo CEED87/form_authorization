@@ -1,39 +1,11 @@
 
-// Authorization form
-
 const formAuth = document.querySelector('#authorization');
 const formReg = document.querySelector('#register');
 const btnReg = document.querySelector('#reg');
 const btnAut = document.querySelector('#aut');
 
 
-
-if (formAuth){
-    const checkInput = () => {
-        btnAut.addEventListener('click', (e) => {
-            const inputs = formAuth.querySelectorAll('input');
-
-            inputs.forEach(input => {
-                if (input.value === '') {
-                    input.classList.add('input');
-                    input.nextElementSibling.innerHTML = "Field must not be empty";
-                } else {
-                    input.classList.remove('input');
-                    input.nextElementSibling.innerHTML = '';
-                    
-                }
-            })
-        
-        })
-    }
-
-    checkInput();
-}
-
-
-// Registration form
-
-const checkLogin = (event, input) => {
+const checkLogin = (input) => {
     if (!/^[a-zA-Z][a-zA-Z0-9-_\.]{5,20}$/.test(input.value)) {
         input.classList.add('input');
         input.nextElementSibling.innerHTML = "Must be at least 6 characters";
@@ -44,7 +16,7 @@ const checkLogin = (event, input) => {
     }
 }
 
-const checkPassword = (event, input) => {
+const checkPassword = (input) => {
     if (!/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/g.test(input.value)) {
         input.classList.add('input');
         input.nextElementSibling.innerHTML = "Must be at least 6 characters and contain numbers and letters";
@@ -55,7 +27,7 @@ const checkPassword = (event, input) => {
     }
 }
 
-const checkPassConf = (event, input) => {
+const checkPassConf = (input) => {
     const inputConf = input.previousElementSibling.previousElementSibling.previousElementSibling.value
     if (input.value !== inputConf || input.value === '') {
         input.classList.add('input');
@@ -67,7 +39,7 @@ const checkPassConf = (event, input) => {
     }
 }
 
-const checkEmail = (event, input) => {
+const checkEmail = (input) => {
     if (!/.+@.+\..+/i.test(input.value)) {
         input.classList.add('input');
         input.nextElementSibling.innerHTML = "Invalid email entered";
@@ -78,7 +50,7 @@ const checkEmail = (event, input) => {
     }
 }
 
-const checkName = (event, input) => {
+const checkName = (input) => {
     if (!/^[a-zA-Zа-яА-я]{3,16}$/.test(input.value)) {
         input.classList.add('input');
         input.nextElementSibling.innerHTML = "Must be at least 2 characters and consist of letters";
@@ -89,21 +61,44 @@ const checkName = (event, input) => {
     }
 }
 
+// Authorization form
+
+if (formAuth){
+    const checkInput = () => {
+        btnAut.addEventListener('click', () => {
+            const inputs = formAuth.querySelectorAll('input');
+
+            inputs.forEach(input => {
+                if (input.name === 'login') {
+                    checkLogin(input)
+                } else if (input.name === 'password') {
+                    checkPassword(input)
+                } 
+            }) 
+        })
+    }
+
+    checkInput();
+}
+
+
+// Registration form
+
 if (formReg) {
     const checkInput = () => {
-        btnReg.addEventListener('click', (e) => {
+        btnReg.addEventListener('click', () => {
             const inputs = formReg.querySelectorAll('input');
             inputs.forEach(input => {
                 if (input.name === 'login') {
-                    checkLogin(e, input)
+                    checkLogin(input)
                 } else if (input.name === 'password') {
-                    checkPassword(e, input)
+                    checkPassword(input)
                 } else if (input.name === 'password_confirm') {
-                    checkPassConf(e, input)
+                    checkPassConf(input)
                 } else if (input.name === 'email') {
-                    checkEmail(e, input)
+                    checkEmail(input)
                 } else if (input.name === 'full_name') {
-                    checkName(e, input)
+                    checkName(input)
                 }
             })  
         })
